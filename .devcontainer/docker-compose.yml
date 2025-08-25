@@ -1,15 +1,16 @@
 version: '3.9'
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver2022
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8
+    restart: always
     ports:
-      - "1433:1433"
+      - "3306:3306"
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "YourPassword123!"
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: prueba
     volumes:
-      - sql_data:/var/opt/mssql
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  sql_data:
+  mysql_data:
